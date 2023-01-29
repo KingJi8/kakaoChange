@@ -93,8 +93,6 @@ function showTxtFile(){
         if ($uls.length >= 1 && beforeData[0] == kkobubble[0] && beforeData[1] == kkobubble[1]) {
           lastul.lastChild.querySelector('.kkodate').remove();
           html = "<li class='kkotxtbox fst'>";
-        } else if ($uls.length >= 1 && beforeData[0] == kkobubble[0] && beforeData[1] != kkobubble[1]) {
-          html = "<li class='kkotxtbox fst'>";
         } else {
           $kkoul.classList.add('active');
           html = "<li class='kkoname fst'>"+kkobubble[0]+"</li>";
@@ -115,8 +113,6 @@ function showTxtFile(){
         $kkoul.classList.add('scd');
         if ($uls.length >= 1 && beforeData[0] == kkobubble[0] && beforeData[1] == kkobubble[1]) {
           lastul.lastChild.querySelector('.kkodate').remove();
-          html = "<li class='kkotxtbox scd'>";
-        } else if ($uls.length >= 1 && beforeData[0] == kkobubble[0] && beforeData[1] != kkobubble[1]) {
           html = "<li class='kkotxtbox scd'>";
         } else {
           $kkoul.classList.add('active');
@@ -143,6 +139,7 @@ function showTxtFile(){
         $kkodate.classList.add("kkodatebox");
         $kkodate.innerHTML = datehtml;
         $txtLog.appendChild($kkodate);
+        datehtml = null;
       }
       allTxt = allTxt.slice(checkscd-1);
       beforeData = [kkobubble[0], kkobubble[1], kkobubble[2]];
