@@ -10,26 +10,23 @@ function showTxtFile(){
   const reader = new FileReader();
 
   reader.onload = function(){
-    let addtxtLog = document.createElement("div");
+    const addtxtLog = document.createElement("div");
     addtxtLog.id = "txtlog";
     $secpg.appendChild(addtxtLog);
     const $txtLog = document.getElementById("txtlog");
 
-    let fstTalker, secTalker;
+    const talker = [];
     let html, datehtml;
-    let kkobubble = [],
-        kkotxtdate = [],
-        beforeData = [];
-    let count = 0,
-        pageCount = 0;
+    // let kkobubble = [],
+    //     kkotxtdate = [],
+    //     beforeData = [];
+    let count = 0;
     let allTxt = reader.result;
-    let pageTxt = [allTxt];
-
 
     // 화자 닉네임 구분하기
     let startIndex = allTxt.indexOf("[")+1;
     let endIndex   = allTxt.indexOf("]");
-    fstTalker = allTxt.substring(startIndex, endIndex);
+    talker[0] = allTxt.substring(startIndex, endIndex);
     let a = allTxt;
     checkSecTalker();
     function checkSecTalker(){
@@ -38,42 +35,31 @@ function showTxtFile(){
       endIndex = a.indexOf("]");
       let b = a.substring(startIndex, endIndex);
 
-      if(fstTalker == b){
+      if(talker[0] == b){
         checkSecTalker();
       } else {
-        secTalker = b;
+        talker[1] = b;
         return;
       }
     }
-
-    // 페이지 나누기
-    /*let pagesplit = allTxt;
-
-    splitpage();
-    function splitpage(){
-      let check = pagesplit.indexOf("[");
-      pagesplit = pagesplit.slice(check-1);
-      count++;
-      if(count >= 10){
-        pageTxt.push(pagesplit);
-        console.log(pageTxt);
-        return;
-      } else {
-        splitpage();
-      }
-    }*/
 
 
     makeTalk();
 
     function makeTalk(){
       // 대화상자 만들기
-      let $kkoul = document.createElement('ul');
-      let $kkodate = document.createElement('div');
+      const $kkoul = document.createElement('ul');
+      const $kkodate = document.createElement('div');
       $kkoul.classList.add('kTalkBox');
       
+      // 대화 분리 (수정본)
+      const kakaoBubbles = allTxt.split("\r\n");
+      console.log(kakaoBubbles);
+
+
+
       // 대화 분리
-      let checkfst = allTxt.indexOf("[")+1;
+      /*let checkfst = allTxt.indexOf("[")+1;
       let checkscd = allTxt.indexOf("[", checkfst+11)+1;
       if(checkscd > 0){
         kkobubble = allTxt.substring(checkfst,checkscd-1);
@@ -82,6 +68,7 @@ function showTxtFile(){
       }
       kkobubble = kkobubble.replaceAll("[","");
       kkobubble = kkobubble.split("]");
+      console.log(kkobubble);
       
 
       const $uls = document.querySelectorAll('#txtlog .kTalkBox');
@@ -130,7 +117,7 @@ function showTxtFile(){
           html += "<span class='kkotxt scd'>"+kkobubble[2]+"</span>";
           html += "</li>"
         }
-      }
+      }*/
 
       // 텍스트 파일 붙이기
       $kkoul.innerHTML = html;
