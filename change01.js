@@ -11,6 +11,7 @@ function showTxtFile(){
 
   reader.onload = function(){
     // log container 생성
+    $secpg.classList.add('show');
     const addtxtLog = document.createElement("div");
     addtxtLog.id = "txtlog";
     $secpg.appendChild(addtxtLog);
@@ -44,28 +45,26 @@ function showTxtFile(){
     }
 
     // 버블 구성
-    const $talker = document.createElement('li');
-    const $talkTime = document.createElement('li');
-    const $talkContent = document.createElement('li');
-
-    function talkBubble(talk){
-      $talker.classList.add('kkoname');
-      $talker.innerHTML = talk[0];
+    function talkBubble(talker, talkTime, talkContent, talk){
+      talker.classList.add('kkoname');
+      talker.innerHTML = talk[0];
       
-      $talkTime.classList.add('kkodate');
-      $talkTime.innerHTML = talk[1];
+      talkTime.classList.add('kkodate');
+      talkTime.innerHTML = talk[1];
       
-      $talkContent.classList.add('kkotxt');
-      $talkContent.innerHTML = talk[2];
+      talkContent.classList.add('kkotxt');
+      talkContent.innerHTML = talk[2];
     }
 
     // 버블 맞추기
-    const $uls = document.querySelectorAll('#txtlog .kTalkBox');
-    let lastul = $uls[$uls.length-1];
-
     function settingBubble(putTalk){
-      talkBubble(putTalk);
       const $kkoul = document.createElement('ul');
+      $kkoul.classList.add('kTalkBox');
+      const $talker = document.createElement('li');
+      const $talkTime = document.createElement('li');
+      const $talkContent = document.createElement('li');
+      
+      talkBubble($talker, $talkTime, $talkContent, putTalk);
 
       console.log(putTalk[0] === talker[0]);
       if(putTalk[0] === talker[0]){ // false 인 경우에도 진행이 되는 이유???
@@ -89,19 +88,23 @@ function showTxtFile(){
     console.log($txtLog);
 
 
+    // 페이지 만들기
     let count = 0;
 
-    //roll();
-    function roll() {
+    makepage();
+    function makepage() {
       if(count > 10) {
         return;
       }
       settingBubble(bubbleSplit[count]);
       console.log($kkoul, bubbleSplit[count]);
       count = count+1;
-      roll();
+      makepage();
     }
 
+
+    // 스크롤에 따라서 새로 로딩
+    
   }
 
   // 텍스트 파일 형식으로 읽어오기
