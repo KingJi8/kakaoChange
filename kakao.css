@@ -5,55 +5,70 @@
   margin: 0 auto;
   display: none;
   width: 400px;
+  height: 700px;;
   text-align: left;
   border-radius: 30px;
   background-color: #b5dce8;
   overflow: scroll;
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
 }
 #secPage .container.show {
-    display: inline-block;
+    display: block;
+}
+#secPage .container::-webkit-scrollbar {
+  display: none;
 }
 
   #secPage .container #txtlog {
-    display: inline-block;
-    width: 410px;
     padding: 20px;
     font-weight: 400;
   }
   
-  
-  #txtlog .kkodatebox {
-    float: left;
-    width: 100%;
-    padding: 30px 0 10px;
-    font-weight: 700;
-    text-align: center;
-  }
   #txtlog .kTalkBox {
-    display: inline-block;
-    width: 300px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: end;
+    flex-wrap: wrap;
+  }
+  #txtlog .kTalkBox.left {
+    justify-content: left;
+    text-align: left;
+  }
+  #txtlog .kTalkBox.right {
+    justify-content: right;
+    text-align: right;
+  }
+
+  /* 날짜 */
+  .kTalkBox .kkodatebox {
+    text-align: center;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 30px;
+    background-color: rgba(0,0,0,0.05);
+    margin: 40px 0 18px;
   }
 
   /* 대화상자 구성요소 */
   .kTalkBox .kkoname {
+    display: block;
     width: 100%;
-    margin: 14px 0 8px;
-  }
-  .kTalkBox .kkotxtbox {
-    margin: 3px 0;
-    display: flex;
-    align-items: flex-end;
+    margin: 14px 0 10px;
   }
   .kTalkBox .kkotxt {
     position: relative;
     display: inline-block;
+    max-width:250px;
     padding: 8px 14px;
+    margin-bottom: 8px;
     background-color: #fff;
     border-radius: 12px;
     line-height: 1.4;
     word-break: break-all;
   }
-  .kTalkBox.beside .kkotxt:after {
+  .kTalkBox.active .kkotxt:after {
     content: '';
     position: absolute;
     width:0;
@@ -62,14 +77,13 @@
   }
   .kTalkBox .kkodate {
     display: inline-block;
+    margin-bottom: 8px;
     min-width: 56px;
     font-size: 0.7rem;
     color: #777777;
   }
   
-  .kTalkBox.left li {
-    text-align: left;
-  }
+  
   .kTalkBox.active.left .kkotxt:after {
     border-right-color: #fff;
     top: 8px;
@@ -83,16 +97,6 @@
     margin-left: 6px;
   }
   
-  .kTalkBox.right {
-    float: right;
-  }
-  .kTalkBox.right li {
-    text-align: right;
-    float: right;
-  }
-  .kTalkBox.right .kkotxt {
-    text-align: left;
-  }
   .kTalkBox.active.right .kkotxt:after {
     border-left-color: #fff;
     top: 8px;
