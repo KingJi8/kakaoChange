@@ -21,20 +21,18 @@
       <div class="hCenter">카톡 대화 간편 보기</div>
     </div>
   </header>
-  <div id="fstPage" class="page">
+  <div class="page">
+    <div class="inputBox">
+      <label for="getFileBtn">카톡 대화 파일 업로드</label>
+      <input type="file" id="getFileBtn" accept=".txt">
+    </div>
     <div class="container">
-      <div class="inputBox">
-        <label for="getFileBtn">카톡 대화 파일 업로드</label>
-        <input type="file" id="getFileBtn" accept=".txt">
+      <div id="txtlog">
+        <div id="detector"></div>
       </div>
     </div>
   </div>
-  <div id="secPage" class="page">
-    <div class="container">
-      <div id="txtlog"></div>
-    </div>
-  </div>
-  <script src="./change01.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 </html>
